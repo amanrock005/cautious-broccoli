@@ -1,1 +1,4 @@
-
+- swap nibble
+- consecutive 1's in binary number
+- two lines intersect
+- how many rectangle in circle
