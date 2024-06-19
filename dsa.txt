@@ -2,3 +2,11 @@
 - consecutive 1's in binary number
 - two lines intersect
 - how many rectangle in circle
+
+
+rough notes
+- conversions code, decimal <---> binary, octal, hexadecimal
+- conversion code, binary <--> octal, hexadecimal
+- conversion code, octal <--> hexadecimal
+
+code to swap two bytes
