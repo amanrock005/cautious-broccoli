@@ -11,3 +11,13 @@ def transpose_matrx(mat):
             TM[j][i] = mat[i][j]
             
     return TM
+
+
+#with using inbuilt function
+
+def transpose_matrx(mat):
+    rows = len(mat)
+    cols = len(mat[0])
+    
+    TM = list(zip(*mat))
+    return [list(rows)[::-1] for row in TM]
