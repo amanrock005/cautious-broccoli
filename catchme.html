@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Button</title>
+    <style>
+        #disappearButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: opacity 1s ease-out;
+            position: relative;
+        }
+
+        #movingButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+<button id="disappearButton" onclick="disappear()">Click me to disappear</button>
+<button id="movingButton">Try to catch me!</button>
+
+<script>
+    function disappear() {
+        document.getElementById("disappearButton").style.opacity = "0";
+    }
+
+    const movingButton = document.getElementById('movingButton');
+    const distance = 100; // distance to move away from the cursor
+
+    document.addEventListener('mousemove', (event) => {
+        const rect = movingButton.getBoundingClientRect();
+        const buttonX = rect.left + rect.width / 2;
+        const buttonY = rect.top + rect.height / 2;
+
+        const deltaX = buttonX - event.clientX;
+        const deltaY = buttonY - event.clientY;
+        const distanceFromCursor = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        if (distanceFromCursor < distance) {
+            const angle = Math.atan2(deltaY, deltaX);
+            const newX = buttonX + Math.cos(angle) * distance;
+            const newY = buttonY + Math.sin(angle) * distance;
+
+            movingButton.style.left = `${newX - rect.width / 2}px`;
+            movingButton.style.top = `${newY - rect.height / 2}px`;
+        }
+    });
+</script>
+
+</body>
+</html>
