@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Animation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    .home {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 400px; /* Fixed width for the container */
+    }
+
+    .home-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .btn-box {
+      margin-top: 20px;
+    }
+
+    .btn-box a {
+      text-decoration: none;
+      color: #fff;
+      background-color: #007bff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .btn-box a:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .typing {
+      border-right: .1em solid black;
+      animation: blink-caret .75s step-end infinite;
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: black; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="home">
+  <div class="home-content">
+    <h1 class="hidden">Hi, I'm Jacob Aiden</h1>
+    <h3 class="hidden">Frontend Developer</h3>
+    <p class="hidden">
+      Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor 
+      incididunt ut labore et dolore magna aliqua. 
+    </p>
+    <div class="btn-box hidden">
+      <a href="#">Hire Me</a>
+      <a href="#">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const texts = document.querySelectorAll('.home-content .hidden');
+    let currentText = 0;
+
+    function typeText(element) {
+      const text = element.textContent;
+      element.textContent = '';
+      element.classList.remove('hidden');
+      let index = 0;
+
+      function typeChar() {
+        if (index < text.length) {
+          element.textContent += text[index];
+          index++;
+          setTimeout(typeChar, 50);
+        } else {
+          element.classList.remove('typing');
+          currentText++;
+          if (currentText < texts.length) {
+            typeText(texts[currentText]);
+          }
+        }
+      }
+      element.classList.add('typing');
+      typeChar();
+    }
+
+    typeText(texts[currentText]);
+  });
+</script>
+
+</body>
+</html>
