@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Accordion with Close Button</title>
+    <style>
+        .accordion {
+            background-color: #eee;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .accordion-header {
+            background-color: #f1f1f1;
+            cursor: pointer;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            text-align: left;
+            outline: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #ccc;
+        }
+
+        .accordion-content {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+        }
+
+        .accordion-content p {
+            padding: 18px;
+            margin: 0;
+        }
+
+        .accordion.active .accordion-content {
+            display: block;
+        }
+
+        #closeAllBtn {
+            display: none;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #closeAllBtn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Simple Accordion with Close Button Example</h2>
+
+<div class="accordion">
+    <div class="accordion-header">Section 1</div>
+    <div class="accordion-content">
+        <p>Content for section 1.</p>
+    </div>
+</div>
+
+<div class="accordion">
+    <div class="accordion-header">Section 2</div>
+    <div class="accordion-content">
+        <p>Content for section 2.</p>
+    </div>
+</div>
+
+<div class="accordion">
+    <div class="accordion-header">Section 3</div>
+    <div class="accordion-content">
+        <p>Content for section 3.</p>
+    </div>
+</div>
+
+<button id="closeAllBtn" onclick="closeAllAccordions()">Close All</button>
+
+<script>
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const accordion = header.parentElement;
+            accordion.classList.toggle('active');
+            toggleCloseAllButton();
+        });
+    });
+
+    function closeAllAccordions() {
+        document.querySelectorAll('.accordion').forEach(accordion => {
+            accordion.classList.remove('active');
+        });
+        toggleCloseAllButton();
+    }
+
+    function toggleCloseAllButton() {
+        const anyOpen = document.querySelectorAll('.accordion.active').length > 0;
+        const closeAllBtn = document.getElementById('closeAllBtn');
+        closeAllBtn.style.display = anyOpen ? 'block' : 'none';
+    }
+</script>
+
+</body>
+</html>
