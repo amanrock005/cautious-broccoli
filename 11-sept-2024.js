@@ -25,3 +25,23 @@ class Solution {
     
     
 }
+
+
+///////////////////
+
+class Solution {
+    
+    findNth(n) {
+      let result = 0;
+      let base = 1;
+      
+      while(n > 0) {
+          result += (n%9) * base;
+          n = Math.floor(n/9);
+          base *= 10;
+      }
+      return result;
+    }
+    
+    
+}
